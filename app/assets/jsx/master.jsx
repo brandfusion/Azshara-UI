@@ -543,7 +543,7 @@ var OrderListLine = React.createClass({
             <td>           
               <div>
                  <button type="button" className="approve-order" onClick={this.approveLine} ><i className="fa fa-check"></i> Aproba</button>
-                 <button type="button" className="reject-order" onClick={this.rejectLine} ><i className="fa fa-close"></i> Anuleaza</button>            
+                 // <button type="button" className="reject-order" onClick={this.rejectLine} ><i className="fa fa-close"></i> Anuleaza</button>            
               </div>
             </td>
 

@@ -76,4 +76,4 @@ gulp.task('watch', function() {
   gulp.watch(['_build/*.html'], ['rebuild']);
 });
 
-gulp.task('default', ['copyImages','copyResources', 'copy', 'sass', 'babel', 'json-server', 'watch', 'browser-sync' ]);  
+gulp.task('default', ['copyImages','copyResources', 'copy', 'sass', 'babel', 'watch', 'browser-sync' ]);  
