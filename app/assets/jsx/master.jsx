@@ -181,7 +181,10 @@ var Order = React.createClass({
     // console.log(this.state.data); 
     return (       
        <div id="order-detail">
-        <div className="col-xs-12"> <h2>Order {this.state.order}</h2></div>       
+        <div className="col-xs-12"> <h2>Order {this.state.order} - {this.state.data.CustomerCompany}</h2> {this.state.data.DeliveryAddress} | {this.state.data.DeliveryName} | {this.state.data.DeliveryEmail}</div>
+        <div className="col-xs-12">
+          <div className="alert alert-warning" role="alert"><strong>ATENTIE!</strong> Toate modificarile se efectueaza in timp real.</div>
+        </div>       
         <div className="col-xs-12">         
             <table width="100%" className="table table-stripped">
               <thead>
@@ -535,8 +538,6 @@ var OrderListLine = React.createClass({
               <p>{this.state.data.CustomerNumber}</p>
             </td>
             <td>
-              <p>Judet: {this.state.data.DeliveryRegion}</p>
-              <p>Localitate:{this.state.data.DeliveryCity}</p>
               <p>Adresa: {this.state.data.DeliveryAddress}</p>
             </td>
             <td>{this.state.data.Price} Lei</td>
@@ -560,8 +561,6 @@ var OrderListLine = React.createClass({
               <p>{this.state.data.CustomerNumber}</p>
             </td>
             <td>
-              <p>Judet: {this.state.data.DeliveryRegion}</p>
-              <p>Localitate:{this.state.data.DeliveryCity}</p>
               <p>Adresa: {this.state.data.DeliveryAddress}</p>
             </td>
             <td>{this.state.data.Price} Lei</td>
@@ -670,13 +669,13 @@ var ListSearchResults = React.createClass({
     if (item.variantName != "-") {
       return (
         <div key={i} className="item">
-          <button type="button" onClick={this.addLine} data-itemCode={item.itemCode} data-productNumber={item.productNumber} data-variantInfo={item.variantName}><i className="fa fa-plus"></i> {item.name} - {item.variantName}</button>
+          <button type="button" onClick={this.addLine} data-itemCode={item.itemCode} data-productNumber={item.productNumber} data-variantInfo={item.variantName}><i className="fa fa-plus"></i>{item.itemCode} - {item.name} - {item.variantName}</button>
         </div>
       );  
     } else {
       return (
         <div key={i} className="item">
-          <button type="button" onClick={this.addLine} data-itemCode={item.itemCode} data-productNumber={item.productNumber} data-variantInfo=""><i className="fa fa-plus"></i> {item.name}</button>
+          <button type="button" onClick={this.addLine} data-itemCode={item.itemCode} data-productNumber={item.productNumber} data-variantInfo=""><i className="fa fa-plus"></i>{item.itemCode} - {item.name}</button>
         </div>
       );  
     }
