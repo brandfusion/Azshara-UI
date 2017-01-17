@@ -1,0 +1,57 @@
+.newsletter 
+  background-color: $lightblue
+  padding: 2rem 1rem
+  font-size: 1em
+  text-align: center
+  // border: 1px solid #eee  
+  @media (max-width: 767px)
+    font-size: 0.8em  
+  p 
+    font-weight: 700
+    margin-bottom: 0.5rem
+  input 
+    padding: 0.5rem 0 0
+    margin-bottom: 1.5rem
+    border-bottom: 1px solid #000
+    font-size: 0.8em
+    width: 20em
+    max-width: 100%
+    text-align: center
+    background-color: transparent
+    +placeholder
+      color: #000
+      font-weight: 300
+      transition: all 0.3s ease-out
+    &:focus 
+      border-color: #000
+  button  
+    font-style: italic   
+    background-color: #000
+    color: #fff
+    padding: 0.5rem 1rem  
+    &:hover 
+      text-decoration: underline   
+.middle-banner-zone
+   margin-top: 2rem 
+//   // position: relative 
+//   margin-top: 2rem 
+//   .item 
+//     margin-bottom: 2*$spacing
+//     // +make-sm-column(4)
+//     // +make-xs-column(6)
+//     a 
+//       display: block
+//       img 
+//         width: 100%
+//   .item-newsletter
+//     @media (max-width: 500px)
+//       width: 100%    
+// .lower-banner-zone 
+//   .item 
+//     margin-bottom: 2*$spacing
+//     // +make-sm-column(6)
+//     // +make-xs-column(12)  
+.logo
+  font-weight: 500
+  small 
+    font-weight: 300    

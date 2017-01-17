@@ -1,0 +1,43 @@
+.container
+  +container-fixed
+  @media (min-width: $screen-sm-min)
+    width: $container-sm
+  @media (min-width: $screen-md-min)
+    width: $container-md
+  @media (min-width: $screen-lg-min)
+    width: $container-lg
+  position: relative  
+.row
+  +make-row
+.container-fluid
+  +container-fixed
+  position: relative 
+  width: 100%
+  max-width: 100%
+.container-full 
+  width: 100%
+  max-width: 100%
+  position: relative
+  padding: 0 $spacing
+  
++make-grid-columns
+
++make-grid(xs)
+
+@media (min-width: $screen-sm-min)
+  +make-grid(sm)
+
+@media (min-width: $screen-md-min)
+  +make-grid(md)
+
+@media (min-width: $screen-lg-min)
+  +make-grid(lg)  
+
+.row-wrap
+  transition: all 0.2s ease-out
+.edit
+  *
+    transition: all 0.2s ease-out
+table 
+ td, th 
+  padding: 0 0.5em

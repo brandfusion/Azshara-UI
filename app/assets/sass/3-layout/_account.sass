@@ -1,0 +1,99 @@
+
+.delete
+  display: inline-block
+  background-color: transparent
+  color: #000
+  line-height: inherit
+  vertical-align: top 
+  transition: all 0s linear
+  i 
+    transition: all 0s linear
+  &:hover 
+    color: red  
+.account-header
+  font-size: 0.8rem
+  background-color: $lightblue
+  padding: $spacing
+  +clearfix() 
+  h2 
+    font-size: 1.6em
+    margin-bottom: 1em
+  .personal-details
+  .actions 
+    margin-top: 1em
+    a 
+      display: block  
+      &:first-child 
+        margin-bottom: 1em
+  .billing-address-list, .shipping-address-list
+    p 
+      margin: 0 
+      display: inline-block
+      width: 100%
+      max-width: 170px
+      +text-overflow
+    .item 
+      color: #aaa
+      line-height: 1rem
+    em 
+      color: #000    
+    .button-link 
+      line-height: inherit 
+      vertical-align: top 
+.heading--account 
+  font-size: 1.4rem
+  line-height: 4rem
+  border-top: 1px solid #eee 
+  &.modifier
+    border: none  
+  .col-xs-12:first-child &
+    border: none
+#react-wishlist 
+  a
+    display: block 
+    position: relative
+    &:after 
+      font-family: "FontAwesome"
+      content: "\f004"
+      position: absolute
+      right: 0.5em
+      top: 0.5em
+      color: #F15B8A
+      font-size: 1.5em
+.subscription-actions
+  a 
+    display: block
+    margin-bottom: 1em
+.billing-information
+  +clearfix 
+  .paragraphContent
+    padding-bottom: 1rem
+.billing-address-list-detail
+  padding-bottom: 1rem
+  position: relative
+  .wrap 
+    padding: 0.5rem
+  .modifier 
+    background-color: $lightblue 
+  .actions 
+    margin-top: 1em
+    a 
+      margin-bottom: 1em
+      display: block
+      &:last-child 
+        margin-bottom: 0
+    .button-link 
+      display: block  
+  .default 
+    font-size: 0.7rem
+    font-style: italic 
+    color: #65B1B1
+    
+.account-back-button 
+  position: absolute
+  right: 0rem
+  top: -2.5rem
+.password-reset-paragraph
+  font-size: 0.7rem
+  margin-top: 2em
+  font-style: italic

@@ -1,0 +1,341 @@
+.product-page
+	+make-row()
+	.product-item
+		+make-sm-column(10)
+		+clearfix
+		padding: 0
+		padding-top: $spacing
+	.product-image
+		+make-sm-column(7)		
+		.thumbnails
+			+make-sm-column(2)
+			+make-md-column(12)
+			+make-lg-column(2)			
+			padding: 0
+			a
+				border: 1px solid #eee
+			@media (min-width: $screen-md-min)
+				float: left
+			@media (max-width: $screen-lg-min)
+				ul
+					+h-nav					
+				li 
+					width: 15%
+					margin-right: $spacing
+		.main-image
+			+make-sm-column(10)
+			+make-md-column(12)
+			+make-lg-column(10)
+			padding-right: 0
+			margin-bottom: $spacing
+			// img 
+			// 	box-shadow: 0px 0px 6px #ddd
+			// 	border: 1px solid #00bed4	
+			@media (min-width: $screen-md-min)
+				float: right
+			@media (max-width: $screen-lg-min)
+				padding-right: $spacing
+				padding: 0
+					
+	.product-related-list
+		+make-sm-column(12)
+		+make-md-column(2)
+		+make-lg-column(2)	
+	.product-content
+		+make-sm-column(5)		
+		p
+			margin-bottom: 0
+			font-size: 0.8em
+		.product-title
+			font-weight: 300
+			color: $blue
+		.product-code
+			color: #ddd
+		.product-info-secondary
+			// padding: 0px 0px $spacing/2
+			border-bottom: 1px solid $blue
+			margin-bottom: $spacing
+			.headline
+				font-size: 1em
+				margin-bottom: 0
+				display: none
+			p
+				margin-bottom: 0.5em 
+			a
+				font-size: 0.8em
+				color: #000
+				text-decoration: underline
+				margin-bottom: 0.8em
+		.product-info-main
+			margin-bottom: $spacing		
+		.product-options
+			// padding: $spacing
+			// border: 1px solid #ddd
+		.price
+			font-size: 2em
+			line-height: 1em
+			sup
+				font-size: 0.4em
+				top: -1em		
+		.old-price
+			text-decoration: line-through
+			color: #ddd	
+	.variant-select
+		select 
+			font-size: 0.8em	
+			border: 1px solid #000
+			outline: none
+			+transition(all 0.2s ease-in)
+			&[data-pick="1"]			
+				background-color: $blue
+				border-color: scale-lightness($blue, -20)
+				font-weight: 600
+				color: #fff
+				option[disabled]	
+					color: scale-lightness($blue, -20)
+				&:after			
+					font-family: "FontAwesome"
+					content: "\f00c"
+					font-weight: 400
+					position: absolute
+					font-size: 0.7em
+					margin-left: 0.3em
+					color: scale-lightness($blue, -20)
+
+	.variant-container	
+		padding: 0.8em 0
+		border-bottom: 1px dotted #ddd
+		position: relative
+		+transition(all 0.3s ease-in)		
+		&:first-child
+			padding-top: 0
+		&:last-child
+			border-bottom: none
+			padding-bottom: 0.3em	
+		p 
+			margin-bottom: 0.3em
+			font-weight: 700
+			font-size: 0.8em
+			text-transform: uppercase
+		.variant-content
+			position: relative
+			+transition(all 0.3s ease-in)
+		.tooltip-variant
+			padding-top: 0.8em			
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			z-index: 2
+			text-align: center
+			+transition(all 0.3s ease-in)
+			p 
+				font-weight: 400
+				border: 1px solid #000
+				padding: 0.5em
+				background-color: #fff
+				z-index: 1
+				position: relative
+				box-shadow: 0px 0px 3px #ddd
+				display: inline-block
+				opacity: 0
+				transform: translate(0px,-10px)
+				+transition(all 0.2s ease-in)
+		.tooltip-variant-visible	
+			+transition(all 0.3s ease-in)
+			// background-color: rgba(255,255,255,0.3)			
+			p
+				opacity: 1
+				transform: translate(0px,0px)
+		.tooltip-variant-disabled
+			display: none	
+.extras
+	padding-top: $spacing
+	li
+		max-width: 20%
+		padding-right: $spacing
+	ul
+		+h-nav
+		
+	p
+		margin-top: 0.5em
+		font-weight: 400
+		margin: 0
+		text-transform: none
+		span
+			font-weight: 600	
+	a
+		color: #000
+		text-decoration: underline				
+.variant-box
+	ul
+		+h-nav
+	a
+		border: 1px solid #000
+		min-width: 4em
+		text-align: center
+		margin-right: 0.5em
+		color: #000
+		font-size: 0.8em
+		padding: 0 1em
+		&:hover
+			background-color: $blue
+			border-color: scale-lightness($blue, -20)
+			color: #fff
+			position: relative
+			// font-weight: 600
+		&[data-pick="1"]
+			background-color: $blue
+			border-color: scale-lightness($blue, -20)
+			color: #fff
+			position: relative
+			// font-weight: 600
+			&:after			
+				font-family: "FontAwesome"
+				content: "\f00c"
+				font-weight: 400
+				position: absolute
+				font-size: 0.7em
+				margin-left: 0.3em
+				color: scale-lightness($blue, -20)
+				top: 0
+				right: 0.3em
+.add-to-basket
+	background-color: $red
+	padding: 0 0.8em
+	line-height: 2em
+	outline: none
+	border: none
+	// border: 1px solid #b5c54a
+	color: #fff
+	+transition(all 0.2s ease-in)
+	&:before		
+		+transition(all 0.2s ease-in)
+		content: "+"
+		font-weight: 300
+		margin-right: 0.5em
+		font-size: 1.4em
+		float: left
+		display: block
+	&:hover		
+		color: #fff
+		background-color: $blue
+		&:before
+			transform: scale(1.8)
+			// color: $red
+.submit-order
+	p
+		display: inline-block
+		margin-right: 0.3em
+	input		
+		max-width: 3.8em
+		font-size: 0.8em
+		border: 1px solid #000
+		padding: 0.2em 0.5em
+	a 
+		margin-right: 0.3em	
+.product-related-list
+	padding-top: $spacing
+	p 
+		font-style: italic
+		text-align: center
+		font-weight: 300
+		font-size: 0.8em
+	.related-item
+		a 
+			color: #000
+			span
+				display: block
+				font-size: 0.8em
+				font-weight: 400
+				text-align: center
+				line-height: 2em
+				margin-bottom: 2em
+.product-recommended
+	+make-sm-column(12)
+	.product-list
+		+make-row
+		.item 
+			+make-sm-column(2)	
+.effect-hover	
+	-webkit-filter: blur(2px)
+	-moz-filter: blur(2px)
+	-o-filter: blur(2px)
+	-ms-filter: blur(2px)
+	filter: blur(2px)
+	opacity: 0.5
+
+// Product Tabs
+.product-tab-header
+	+make-sm-column(12)
+	margin-top: $spacing*2
+	ul
+		+h-nav
+		border-bottom: 1px solid $blue
+		a
+			color: #000
+			font-size: 0.8em
+			line-height: 2em
+			display: inline-block
+			font-weight: 700
+			text-transform: uppercase
+			&:after
+				content: "/"
+				margin-left: 5px
+				margin-right: 5px
+				font-weight: 400
+				color: $red
+			&:hover
+				color: $blue
+		li.active
+			a				
+				color: $blue	
+.tab-content
+	padding-top: $spacing	
+	+make-sm-column(12)
+	+clearfix	
+	
+	.product-description
+		padding-top: 4em
+		max-width: 75%
+		margin: 0 auto
+		font-size: 0.8em
+		h3
+			font-size: 1.8em
+			font-weight: 300
+		.inline-element
+			margin: 2em
+			margin-top: 1em
+			&:nth-of-type(2n+1)
+				margin-left: -4em
+				float: left
+			&:nth-of-type(2n+2)
+				margin-right: -4em
+				float: right
+
+.tab-content
+	.tab-pane 
+		display: none
+		visibility: hidden
+	.active 
+		display: block
+		visibility: visible
+.comment-block	
+	+clearfix
+	a
+		display: inline-block
+		color: #000
+		// text-decoration: underline
+		font-size: 0.8em
+		padding: 0 0.5em
+		font-style: italic
+	.write-review:after
+		font-family: "FontAwesome"
+		content: "\f0e5"
+		margin-left: 0.5em	
+	.rating-block
+		+clearfix
+		display: inline-block
+		img
+			float: left		

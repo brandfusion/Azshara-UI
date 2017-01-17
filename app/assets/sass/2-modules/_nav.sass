@@ -1,0 +1,46 @@
+.header-nav  
+  line-height: 1rem
+  padding-top: 0.5rem
+  padding-bottom: 0.5rem
+  ul  
+    +h-nav
+  a 
+    line-height: 1rem 
+    border-right: 1px solid #CCC
+    padding-right: 0.5rem
+    color: inherit
+    &:hover 
+      color: $violet
+  li 
+    margin-right: 0.5rem
+  li:last-child 
+    a 
+      border-right: none  
+.nav-main
+	// margin-bottom: 2rem
+	background-color: $lightblue
+	padding: 0.5rem 0
+	font-weight: 300
+	ul 
+		+h-nav
+	a
+		padding: 0 1rem
+		color: #000
+	li:first-child 
+		a
+			padding-left: 0	
+	li.active 
+		a 
+			padding: 0 0.5rem
+			border: 1px solid #000
+			&:hover 
+				border-color: #B6E0E0
+				text-decoration: none		
+	.dropdown
+		a
+			&:after			
+				font-family: "FontAwesome"
+				content: "\f107"
+				margin-left: 0.5em
+				float: right
+

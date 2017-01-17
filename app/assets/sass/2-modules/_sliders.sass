@@ -1,0 +1,36 @@
+.main-slider
+  .slick-slider 
+    margin-bottom: $spacing
+  img 
+    width: 100%
+  a 
+    display: block  
+  .slick-track
+    transition: all 0s linear 
+  .slick-arrow
+    display: none 
+  .slick-dots
+    position: absolute
+    bottom: 1em 
+    width: 100%
+    text-align: center    
+    li 
+      display: inline-block
+      margin: 0 0.5em
+      &:nth-child(1).slick-active 
+        button 
+          background-color: #F88415
+      &:nth-child(2).slick-active 
+        button 
+          background-color: #DD2B66
+      &:nth-child(3).slick-active 
+        button 
+          background-color: #4EDE1C   
+            
+    button    
+      background-color: rgba(#fff, 0.75)
+      border-radius: 100%
+      text-indent: -9999px
+      width: 1em
+      height: 1em
+      cursor: pointer
