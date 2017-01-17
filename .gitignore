@@ -1,0 +1,9 @@
+bower_components
+node_modules
+_build
+_backup
+.sass-cache
+prepros.cfg
+*.css
+*.css.map
+*.cshtml
