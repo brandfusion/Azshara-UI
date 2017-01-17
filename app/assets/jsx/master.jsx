@@ -183,7 +183,7 @@ var Order = React.createClass({
        <div id="order-detail">
         <div className="col-xs-12"> <h2>Order {this.state.order} - {this.state.data.CustomerCompany}</h2> {this.state.data.DeliveryAddress} | {this.state.data.DeliveryName} | {this.state.data.DeliveryEmail}</div>
         <div className="col-xs-12">
-          <div className="alert alert-warning" role="alert"><strong>ATENTIE!</strong> Toate modificarile se efectueaza in timp real.</div>
+          <div className="alert alert-danger" role="alert"><strong>ATENTIE!</strong> Toate modificarile se efectueaza in timp real.</div>
         </div>       
         <div className="col-xs-12">         
             <table width="100%" className="table table-stripped">
