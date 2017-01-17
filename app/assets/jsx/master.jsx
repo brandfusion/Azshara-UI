@@ -543,7 +543,7 @@ var OrderListLine = React.createClass({
             <td>           
               <div>
                  <button type="button" className="approve-order" onClick={this.approveLine} ><i className="fa fa-check"></i> Verificat de CRC</button>
-                 // <button type="button" className="reject-order" onClick={this.rejectLine} ><i className="fa fa-close"></i> Anuleaza</button>            
+                 <!--// <button type="button" className="reject-order" onClick={this.rejectLine} ><i className="fa fa-close"></i> Anuleaza</button> -->        
               </div>
             </td>
 
@@ -618,7 +618,7 @@ var AddOrderlineItem = React.createClass({
   },
   handleChange: function(e){
     var value = e.target.value;
-    var link = "/Default.aspx?ID=3864&q=" + value;
+    var link = "/Default.aspx?ID=3867&q=" + value;
     var that = this;
     $.ajax({
       url: link ,
