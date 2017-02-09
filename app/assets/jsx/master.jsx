@@ -36,6 +36,33 @@ var Order = React.createClass({
     }.bind(this));    
 
     $('#order-detail').fadeIn(1000);
+
+    //Adds Stock to Lines after ajax call
+    var that = this;
+    $.ajax({
+      url: '/files/extra/editorderstock.ashx?type=order&orderid=' +  orderId,
+      type: 'GET',
+      dataType: 'json'
+    })
+    .done(function(response) {
+      var data = that.state.data;
+      var Lines = data.Lines;
+      var LinesWithStock = [];
+
+      _.map(response, function(o){
+        var line = _.filter(Lines, function(line){ return line.Id == o.Id});
+        line[0].Stock = o.Stock;
+          LinesWithStock.push(line[0]);
+      });
+      data.Lines = LinesWithStock
+      that.setState({data: data}); 
+    })
+    .fail(function() {
+      console.log("error");
+    });
+
+
+    
   }, 
   componentWillUnmount: function() {
     this.serverRequest.abort();
@@ -113,7 +140,10 @@ var Order = React.createClass({
   refreshData: function(){
     var linkReloadCart = "/Files/Extra/EditOrder.ashx?orderId=" + this.state.order;  
     var that = this; 
+    var orderId = h.getQueryVariable("orderId");
     loader(true);  
+
+    //Adds Stock to Lines after ajax call
     $.ajax({
       url: linkReloadCart,
       type: 'GET',
@@ -124,7 +154,35 @@ var Order = React.createClass({
       var data = result.EditOrder;
       // console.log("after add line");
       // console.log(that.state.data);        
-      that.setState({data: data});  
+      that.setState({data: data}); 
+
+
+
+      $.ajax({
+        url: '/files/extra/editorderstock.ashx?type=order&orderid=' +  orderId,
+        type: 'GET',
+        dataType: 'json'
+      })
+      .done(function(response) {
+        var data = that.state.data;
+        var Lines = data.Lines;
+        var LinesWithStock = [];
+
+        _.map(response, function(o){
+          var line = _.filter(Lines, function(line){ return line.Id == o.Id});
+          line[0].Stock = o.Stock;
+            LinesWithStock.push(line[0]);
+        });
+        data.Lines = LinesWithStock
+        that.setState({data: data}); 
+      })
+      .fail(function() {
+        console.log("error");
+      });
+
+
+
+
       setTimeout(function(){
         loader(false);
       },1000);
@@ -164,8 +222,12 @@ var Order = React.createClass({
 
   },
   eachItem: function(item, i) {
+    var invalid = false;
+    if (item.Quantity > item.Stock || item.Stock === null) {
+      invalid = true;
+    }
     return (
-      <Orderline key={item.Id} index={i} source={item} deleteLine={this.deleteLine} updateLine={this.updateLine} />  
+      <Orderline key={item.Id} index={i} source={item} deleteLine={this.deleteLine} updateLine={this.updateLine} invalid={invalid} />  
     );
   },
   loadScripts: function(){
@@ -184,7 +246,7 @@ var Order = React.createClass({
         <div className="col-xs-12"> <h2>Order {this.state.order} - {this.state.data.CustomerCompany}</h2> {this.state.data.DeliveryAddress} | {this.state.data.DeliveryName} | {this.state.data.DeliveryEmail}</div>
         <div className="col-xs-12">
           <div className="alert alert-danger" role="alert"><strong>ATENTIE!</strong> Toate modificarile se efectueaza in timp real.</div>
-        </div>       
+        </div>
         <div className="col-xs-12">         
             <table width="100%" className="table table-stripped">
               <thead>
@@ -192,6 +254,7 @@ var Order = React.createClass({
                   <th>Produse</th>
                   <th>Pret Unitar</th>
                   <th>Cantitate</th>
+                  <th>Stoc</th>
                   <th>Pret Total</th>
                 </tr>
               </thead>
@@ -286,14 +349,17 @@ var Orderline = React.createClass({
     var id = "QuantityOrderLine" + this.state.data.Id;     
     var productName = this.state.data.Name;
     var variantClass = "product-code hidden";
+    var invalidClass = "";
     if (this.state.data.VariantInfo !== "") {
       productName = this.state.data.Name + " - " + this.state.data.VariantInfo;
       variantClass = "product-code";
     }
-   
+    if (this.props.invalid == true) {
+      invalidClass = "invalid"
+    }
     if(this.state.index !== null) {
       return (
-        <tr>
+        <tr className={invalidClass}>
           <td className="semibold">
             <div>{productName}</div>
             <div className="product-code">Cod produs: {this.state.data.ProductCode} </div>            
@@ -313,6 +379,9 @@ var Orderline = React.createClass({
               <button type="button" className="btn-update" onClick={this.updateLine}><i className="fa fa-refresh"></i></button>
               <div><small>&nbsp;</small></div>
             </div>
+          </td>
+          <td>
+            {this.props.source.Stock}
           </td>
           <td>{this.props.source.Price} Lei <button type="button" onClick={this.deleteLine} className="btn-delete"><i className="fa fa-close"></i></button></td>
         </tr>
@@ -336,7 +405,7 @@ var OrderList = React.createClass({
   componentDidMount: function() {  
     $('#orders-list').fadeOut(0);    
     var userId = $('[data-user-id]').attr("data-user-id");
-    // userId = "4499";
+    // userId = "4499"; 
     // var link = "/Files/Extra/EditOrder.ashx?orderId=" + orderId;
     var link = "/Files/Extra/EditOrderCsOrderRepository.ashx?csUserId="+userId+"&status=pending";
     this.serverRequest = $.getJSON(link, function(result) { 
@@ -346,6 +415,9 @@ var OrderList = React.createClass({
         this.setState({originaldata: data});
     }.bind(this));
     $('#orders-list').fadeIn(1000);
+
+    
+
   }, 
   componentWillUnmount: function() {
     this.serverRequest.abort();
@@ -537,7 +609,7 @@ var OrderListLine = React.createClass({
               <p>{this.state.data.CustomerCompany}</p>
               <p>{this.state.data.CustomerNumber}</p>
             </td>
-            <td>
+            <td>              
               <p>Adresa: {this.state.data.DeliveryAddress}</p>
             </td>
             <td>{this.state.data.Price} Lei</td>
@@ -561,6 +633,7 @@ var OrderListLine = React.createClass({
               <p>{this.state.data.CustomerNumber}</p>
             </td>
             <td>
+              
               <p>Adresa: {this.state.data.DeliveryAddress}</p>
             </td>
             <td>{this.state.data.Price} Lei</td>
@@ -616,7 +689,7 @@ var AddOrderlineItem = React.createClass({
   },
   handleChange: function(e){
     var value = e.target.value;
-    var link = "/Default.aspx?ID=3867&q=" + value;
+    var link = "/Default.aspx?ID=3871&q=" + value;
     var that = this;
     $.ajax({
       url: link ,
