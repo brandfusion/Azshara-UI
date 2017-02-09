@@ -121,7 +121,9 @@ var Order = React.createClass({
       data.Lines = arr;
       that.setState({data: data});
       that.updateTotals(orderInfo.ShippingFee,orderInfo.Price,orderInfo.PriceWithVat);
+      that.refreshData();
       setTimeout(function(){
+
         loader(false);
       },1000);
     })
