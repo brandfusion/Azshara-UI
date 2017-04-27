@@ -241,8 +241,12 @@ var Order = React.createClass({
     if (lines === undefined) {
       lines = [];
     }    
+    console.log(this.state.data);
     // console.log("render");
     // console.log(this.state.data); 
+    
+    var comment = this.state.data.CustomerComment;    
+    var displayCommentClass = comment == "" || comment == null ? "col-xs-12 hidden" : "col-xs-12";
     return (       
        <div id="order-detail">
         <div className="col-xs-12"> <h2>Order {this.state.order} - {this.state.data.CustomerCompany}</h2> {this.state.data.DeliveryAddress} | {this.state.data.DeliveryName} | {this.state.data.DeliveryEmail}</div>
@@ -265,8 +269,16 @@ var Order = React.createClass({
                 <AddOrderlineItem addLine={this.addLine} />
               </tbody>
             </table>
+            
                    
         </div>
+        <div className={displayCommentClass}>
+          <div className="react-order-comment">
+            <div className="form-control">
+              {comment}
+            </div>
+          </div>
+        </div> 
         <div className="col-xs-12">
           <p><strong>Taxa transport: {this.state.data.ShippingFee} Lei</strong></p>
           <p><strong>Pret total(fara TVA): {this.state.data.Price} Lei</strong></p>
